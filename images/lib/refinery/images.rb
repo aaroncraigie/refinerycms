@@ -22,7 +22,3 @@ module Refinery
     end
   end
 end
-
-ActiveSupport.on_load(:active_record) do
-  require 'globalize'
-end

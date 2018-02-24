@@ -36,7 +36,7 @@ module Refinery
           friendly_id_options[:use] << :scoped
           friendly_id_options.merge!(scope: :parent)
         end
-        friendly_id_options[:use] << :globalize
+        #friendly_id_options[:use] << :globalize
         friendly_id_options
       end
     end
@@ -126,7 +126,7 @@ module Refinery
       # This works using a query against the translated content first and then
       # using all of the page_ids we further filter against this model's table.
       def in_menu
-        where(:show_in_menu => true).with_globalize
+        where(:show_in_menu => true)
       end
 
       # An optimised scope containing only live pages ordered for display in a menu.
@@ -136,7 +136,7 @@ module Refinery
 
       # Wrap up the logic of finding the pages based on the translations table.
       def with_globalize(conditions = {})
-        Pages::Finder.with_globalize(conditions)
+        Pages::Finder #.with_globalize(conditions)
       end
 
       # Returns how many pages per page should there be when paginating pages
@@ -171,13 +171,15 @@ module Refinery
     # Consists of:
     #   * The current locale's translated slug
     def canonical
-      Globalize.with_locale(::Refinery::I18n.current_frontend_locale) { url }
+      url
+      #Globalize.with_locale(::Refinery::I18n.current_frontend_locale) { url }
     end
 
     # The canonical slug for this particular page.
     # This is the slug for the current frontend locale.
     def canonical_slug
-      Globalize.with_locale(::Refinery::I18n.current_frontend_locale) { slug }
+      slug
+      #Globalize.with_locale(::Refinery::I18n.current_frontend_locale) { slug }
     end
 
     # Returns in cascading order: custom_slug or menu_title or title depending on
@@ -234,13 +236,13 @@ module Refinery
     end
 
     def nested_url
-      Globalize.with_locale(slug_locale) do
+      #Globalize.with_locale(slug_locale) do
         if ::Refinery::Pages.scope_slug_by_parent && !root?
-          self_and_ancestors.includes(:translations).map(&:to_param)
+          self_and_ancestors.map(&:to_param)
         else
           [to_param.to_s]
         end
-      end
+      #end
     end
 
     # Returns an array with all ancestors to_param, allow with its own
@@ -376,7 +378,7 @@ module Refinery
     end
 
     def slug_locale
-      return Globalize.locale if translation_for(Globalize.locale, false).try(:slug).present?
+      return I18n.locale #Globalize.locale if translation_for(Globalize.locale, false).try(:slug).present?
 
       if translations.empty? || translation_for(Refinery::I18n.default_frontend_locale, false).present?
         Refinery::I18n.default_frontend_locale
