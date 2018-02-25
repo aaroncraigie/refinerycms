@@ -8,7 +8,7 @@ module Refinery
   class Page < Core::BaseModel
     extend FriendlyId
 
-    translates :title, :menu_title, :custom_slug, :slug, :include => :seo_meta
+    translates :title, :menu_title, :custom_slug, :slug
 
     attribute :title
     attribute :menu_title
