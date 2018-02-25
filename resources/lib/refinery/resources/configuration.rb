@@ -1,7 +1,6 @@
 module Refinery
   module Resources
 
-    extend Refinery::Dragonfly::ExtensionConfiguration
     include ActiveSupport::Configurable
 
     config_accessor :max_file_size, :pages_per_dialog, :pages_per_admin_index, :content_disposition

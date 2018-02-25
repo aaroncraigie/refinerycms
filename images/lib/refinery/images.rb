@@ -1,12 +1,10 @@
 require 'refinerycms-core'
-require 'refinerycms-dragonfly'
 
 module Refinery
   autoload :ImagesGenerator, 'generators/refinery/images/images_generator'
 
   module Images
     require 'refinery/images/engine'
-    require 'refinery/dragonfly/extension_configuration'
     require 'refinery/images/configuration'
 
     autoload :Validators, 'refinery/images/validators'

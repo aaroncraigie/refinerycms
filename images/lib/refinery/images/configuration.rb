@@ -1,7 +1,6 @@
 module Refinery
   module Images
 
-    extend Refinery::Dragonfly::ExtensionConfiguration
     include ActiveSupport::Configurable
 
     config_accessor :max_image_size, :pages_per_dialog, :pages_per_admin_index,

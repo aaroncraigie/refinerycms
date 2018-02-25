@@ -5,14 +5,15 @@ module Refinery
     # for example, <%= content_fu(@page.content_for(:body), '96x96#c') %> converts all /system/images to a 96x96 cropped thumbnail
     def content_fu(content, thumbnail)
       content.gsub(%r{<img.+?src=['"](/system/images/.+?)/.+?/>}) do |img|
-        begin
-          sha = img.match(%r{/system/images/(.+?)/})[1]
-          job = Dragonfly::Job.deserialize sha, Dragonfly.app(:refinery_images)
+        return img
+#        begin
+#          sha = img.match(%r{/system/images/(.+?)/})[1]
+#          job = Dragonfly::Job.deserialize sha, Dragonfly.app(:refinery_images)
 
-          image_fu Image.where(:image_uid => job.uid).first, thumbnail
-        rescue Dragonfly::Serializer::BadString
-          img
-        end
+#          image_fu Image.where(:image_uid => job.uid).first, thumbnail
+#        rescue Dragonfly::Serializer::BadString
+#          img
+#        end
       end
     end
 

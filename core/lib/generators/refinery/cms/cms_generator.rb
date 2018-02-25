@@ -76,7 +76,7 @@ end}  end
 
     def append_heroku_gems!
       production_gems = [
-        "gem 'dragonfly-s3_data_store'",
+        "gem 'paperclip', '~> 5.0.0'"
         "gem 'rails_12factor'"
       ]
       production_gems << "gem 'puma'" unless destination_gemfile_has_puma?
@@ -292,7 +292,6 @@ end
       generator_args << '--skip-migrations' if self.options[:skip_migrations]
       Refinery::CoreGenerator.start generator_args
       Refinery::Authentication::DeviseGenerator.start generator_args if defined?(Refinery::Authentication::DeviseGenerator)
-      Refinery::Dragonfly::DragonflyGenerator.start generator_args if defined?(Refinery::Dragonfly::DragonflyGenerator)
       Refinery::ResourcesGenerator.start generator_args if defined?(Refinery::ResourcesGenerator)
       Refinery::PagesGenerator.start generator_args if defined?(Refinery::PagesGenerator)
       Refinery::ImagesGenerator.start generator_args if defined?(Refinery::ImagesGenerator)

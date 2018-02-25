@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.files             = `git ls-files`.split("\n")
   s.test_files        = `git ls-files -- spec/*`.split("\n")
 
-  s.add_dependency 'refinerycms-dragonfly',   '~> 1.0'
+  s.add_dependency 'paperclip',   '~> 5.0'
   s.add_dependency 'hstore_translate', '~> 2.0'
   s.add_dependency 'activemodel-serializers-xml', '~> 1.0', '>= 1.0.1'
   s.add_dependency 'refinerycms-core',        version
