@@ -17,13 +17,7 @@ module Refinery
 
     after_save { translations.collect(&:save) }
 
-    class Translation
-      is_seo_meta
-
-      def self.seo_fields
-        ::SeoMeta.attributes.keys.map{ |a| [a, :"#{a}="]}.flatten
-      end
-    end
+    #is_seo_meta
 
     class FriendlyIdOptions
       def self.options
@@ -47,7 +41,7 @@ module Refinery
     end
 
     # Delegate SEO Attributes to globalize translation
-    delegate(*(Translation.seo_fields << {:to => :translation}))
+    #delegate(*(Translation.seo_fields << {:to => :translation}))
 
     validates :title, :presence => true
 
