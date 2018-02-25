@@ -15,7 +15,7 @@ module Refinery
       return nil if admin? || @page.nil?
       link_to t('refinery.admin.pages.edit', site_bar_translate_locale_args),
               refinery.admin_edit_page_path(@page.nested_url,
-              :switch_locale => (@page.translations.first.locale unless @page.translated_to_default_locale?)),
+              :switch_locale => (::I18n.locale unless @page.translated_to_default_locale?)),
               'data-turbolinks' => false
     end
 

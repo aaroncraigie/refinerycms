@@ -5,8 +5,8 @@ module Refinery
     end
 
     def call(field)
-      record.send(field).presence ||
-        record.translations.detect {|t| t.send(field).present?}.send(field)
+      record.send(field).presence #||
+      #  record.translations.detect {|t| t.send(field).present?}.send(field)
     end
 
     private

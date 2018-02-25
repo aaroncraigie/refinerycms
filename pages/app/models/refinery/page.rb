@@ -15,7 +15,7 @@ module Refinery
     attribute :custom_slug
     attribute :slug
 
-    after_save { translations.collect(&:save) }
+#    after_save { translations.collect(&:save) }
 
     #is_seo_meta
 
@@ -55,7 +55,7 @@ module Refinery
 
     has_many :parts, -> {
       scope = order('position ASC')
-      scope = scope.includes(:translations) if ::Refinery::PagePart.respond_to?(:translation_class)
+#      scope = scope.includes(:translations) if ::Refinery::PagePart.respond_to?(:translation_class)
       scope
     },       :foreign_key => :refinery_page_id,
              :class_name => '::Refinery::PagePart',
@@ -146,19 +146,19 @@ module Refinery
       protected
 
       def nullify_duplicate_slugs_under_the_same_parent!
-        t_slug = translation_class.arel_table[:slug]
-        joins(:translations).group(:locale, :parent_id, t_slug).having(t_slug.count.gt(1)).count.
-        each do |(locale, parent_id, slug), count|
-          by_slug(slug, :locale => locale).where(:parent_id => parent_id).drop(1).each do |page|
-            page.slug = nil # kill the duplicate slug
-            page.save # regenerate the slug
-          end
-        end
+#        t_slug = translation_class.arel_table[:slug]
+#        joins(:translations).group(:locale, :parent_id, t_slug).having(t_slug.count.gt(1)).count.
+#        each do |(locale, parent_id, slug), count|
+#          by_slug(slug, :locale => locale).where(:parent_id => parent_id).drop(1).each do |page|
+#            page.slug = nil # kill the duplicate slug
+#            page.save # regenerate the slug
+#          end
+#        end
       end
     end
 
     def translated_to_default_locale?
-      persisted? && translations.any?{ |t| t.locale == Refinery::I18n.default_frontend_locale}
+      persisted? #&& translations.any?{ |t| t.locale == Refinery::I18n.default_frontend_locale}
     end
 
     # The canonical page for this particular page.
@@ -374,11 +374,11 @@ module Refinery
     def slug_locale
       return I18n.locale #Globalize.locale if translation_for(Globalize.locale, false).try(:slug).present?
 
-      if translations.empty? || translation_for(Refinery::I18n.default_frontend_locale, false).present?
-        Refinery::I18n.default_frontend_locale
-      else
-        translations.first.locale
-      end
+      #if translations.empty? || translation_for(Refinery::I18n.default_frontend_locale, false).present?
+      #  Refinery::I18n.default_frontend_locale
+      #else
+      #  translations.first.locale
+      #end
     end
   end
 end

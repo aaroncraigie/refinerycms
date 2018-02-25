@@ -1,6 +1,6 @@
 <% # setup params for various action links
   add_url =   refinery.new_admin_page_path(parent_id: page.id)
-  edit_url =  refinery.admin_edit_page_path(page.nested_url, switch_locale: (page.translations.first.locale unless page.translated_to_default_locale?))
+  edit_url =  refinery.admin_edit_page_path(page.nested_url, switch_locale: (::I18n.locale unless page.translated_to_default_locale?))
   delete_url = refinery.admin_delete_page_path(page.nested_url)
   delete_options = {
      class: "cancel confirm-delete",

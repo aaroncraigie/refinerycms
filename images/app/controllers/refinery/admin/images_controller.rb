@@ -3,7 +3,6 @@ module Refinery
     class ImagesController < ::Refinery::AdminController
 
       crudify :'refinery/image',
-              include: [:translations],
               order: "updated_at DESC",
               sortable: false
 

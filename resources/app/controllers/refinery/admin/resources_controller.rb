@@ -3,7 +3,6 @@ module Refinery
     class ResourcesController < ::Refinery::AdminController
 
       crudify :'refinery/resource',
-              include: [:translations],
               order: "updated_at DESC",
               sortable: false
 

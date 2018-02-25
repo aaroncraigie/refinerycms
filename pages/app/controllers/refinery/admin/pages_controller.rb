@@ -4,7 +4,7 @@ module Refinery
       prepend Pages::InstanceMethods
 
       crudify :'refinery/page',
-              :include => [:translations, :children],
+              :include => [:children],
               :paging => false
 
       helper_method :valid_layout_templates, :valid_view_templates
