@@ -10,8 +10,6 @@ module Refinery
     self.pages_per_dialog = 12
     self.pages_per_admin_index = 20
 
-    self.dragonfly_name = :refinery_resources
-
   end
 end
 

@@ -21,15 +21,6 @@ module Refinery
     self.image_views = [:grid, :list]
     self.preferred_image_view = :grid
 
-    # Images should always use these changes to the dragonfly defaults
-    self.dragonfly_name         = :refinery_images
-    self.dragonfly_plugin       = :imagemagick
-
-    # Dragonfly processor to strip image of all profiles and comments (imagemagick conversion -strip)
-    self.dragonfly_processors   = [{
-      name: :strip,
-      block: -> (content) { content.process!(:convert, '-strip') }
-    }]
 
   end
 end
